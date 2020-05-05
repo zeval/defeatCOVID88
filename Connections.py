@@ -13,8 +13,8 @@ class Connections:
 
         for line in fileContent:
             birds = line.strip().split(" ")
-            assert len(birds) == 2, "Error: Badly formed connections file. PLease double-check your connections file" \
-                                    " and try again."
+            assert len(birds) == 2, "Error: Badly formed connections file. " \
+                                    "Please double-check your connections file and try again."
             connection = birds[0] + " --> " + birds[1]
             self.add(connection)
 

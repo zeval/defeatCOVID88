@@ -36,8 +36,8 @@ class SocialNetwork:
             output += str(person) + "\n"
         return output
 
-    def add(self, drone):
-        self._network.append(drone)
+    def add(self, person):
+        self._network.append(person)
 
     def items(self):
         """
@@ -45,7 +45,6 @@ class SocialNetwork:
         """
         for elem in self._network:
             yield elem
-
 
     # def readFile(self, fileName):
     #     inputFile = open(fileName, "r")
