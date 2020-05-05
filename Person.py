@@ -37,3 +37,6 @@ class Person:
 
     def getImmune(self):
         return self._immune
+
+    def __str__(self):
+        return "{}, {}, {}, <{}>, {}, {}".format(self._name, self._idnb, self._age, self._direct, self._fitness, self._immune)
