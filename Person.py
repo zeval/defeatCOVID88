@@ -1,4 +1,4 @@
-# 2019-2020 Programação II (LTI)
+# 2019-2020 Programação 2 (LTI)
 # Grupo 12
 # 55373 José Almeida
 # 55371 Augusto Gouveia
@@ -17,6 +17,10 @@ class Person:
         self._direct = copy.deepcopy(direct)
         self._fitness = fitness
         self._immune = immune
+
+    def __str__(self):
+        return self._name + ", " + self._idnb + ", " + self._age + ", <" + ", ".join(self._direct) + ">, " \
+               + self._fitness + ", " + self._immune
 
     # Getters
 
@@ -37,6 +41,3 @@ class Person:
 
     def getImmune(self):
         return self._immune
-
-    def __str__(self):
-        return "{}, {}, {}, <{}>, {}, {}".format(self._name, self._idnb, self._age, self._direct, self._fitness, self._immune)
