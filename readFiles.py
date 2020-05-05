@@ -30,8 +30,8 @@ def socialNetworkReader(fileName):
 
         # organizing direct array
 
-        #### direct = userDetails[3:-2]
-        #### direct = [element.replace("<","").replace(">","") for element in direct]
+        direct = userDetails[3:-2]
+        direct = [element.strip("<>") for element in direct]
 
         # creating Person object
 
@@ -42,7 +42,7 @@ def socialNetworkReader(fileName):
     
 
 
-# personList = socialNetworkReader("socialNetwork.txt")
+personList = socialNetworkReader("socialNetwork.txt")
 
-# for person in personList:
-#     print(person.getName(), person.getIdNb(), person.getAge(), person.getDirect(), person.getFitness(), person.getImmune())
+for person in personList:
+    print(person.getDirect())
