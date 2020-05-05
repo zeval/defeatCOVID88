@@ -42,7 +42,7 @@ def socialNetworkReader(fileName):
     
 
 
-personList = socialNetworkReader("socialNetwork.txt")
+# personList = socialNetworkReader("socialNetwork.txt")
 
-for person in personList:
-    print(person.getDirect())
+# for person in personList:
+#     print(person.__str__())
