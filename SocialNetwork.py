@@ -28,7 +28,7 @@ class SocialNetwork:
 
             # creating Person object and adding it to the social network
 
-            self.add(Person(name, idNb, age, direct, fitness, immune))
+            self.addPerson(Person(name, idNb, age, direct, fitness, immune))
 
     def __str__(self):
         output = ""
@@ -36,7 +36,7 @@ class SocialNetwork:
             output += str(person) + "\n"
         return output
 
-    def add(self, person):
+    def addPerson(self, person):
         self._network.append(person)
 
     def items(self):

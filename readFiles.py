@@ -31,6 +31,7 @@
 #         direct = userDetails[3:-2]
 #         direct = [element.strip("<>") for element in direct]
 #         print(direct)
+#
 #         # creating Person object
 #
 #         personObject = Person(name, idNb, age, direct, fitness, immune)

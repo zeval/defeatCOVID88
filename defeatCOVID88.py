@@ -7,14 +7,14 @@
 import sys
 # from Person import Person
 from SocialNetwork import SocialNetwork
-from Connections import Connections
+from Subjects import Subjects
 
 
 def calculate(networkFile, interactionsFile):
     socialNetwork = SocialNetwork(networkFile)
-    connectionsList = Connections(interactionsFile)
+    subjectList = Subjects(interactionsFile)
     print(socialNetwork)
-    print(connectionsList)
+    print(subjectList)
 
 
 try:
