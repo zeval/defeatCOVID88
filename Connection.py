@@ -1,3 +1,9 @@
+# 2019-2020 Programação 2 (LTI)
+# Grupo 12
+# 55373 José Almeida
+# 55371 Augusto Gouveia
+
+
 class Connection(object):
     def __init__(self, src, dest):
         """
