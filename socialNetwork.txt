@@ -1,10 +1,10 @@
 #Name,IdNb, Age, Direct, Fitness, Immune:
 Bruno, cvd443, 37, <cvd221, cvd343, cvd245, cvd556>, 3, Yes
 Manuela, cvd256, 72, <cvd173, cvd132>, 4, No
-Ana, cvd334, 24, <cvd455, cvd356, cvd424> 4, No
-Alberto, cvd478, 65, <cvd342, cvd225, cvd872> 2, No
-Andreia, cvd585, 43, <cvd875, cvd234> 3, Yes
-Walter, cvd715, 52, <cvd211, cvd478> 1, No
-Jesse, cvd211, 23, <cvd 715>, 4, No
-Sofia, cvd745, 19, <cvd274, cvd189, cvd654> 5, Yes
-Amelia, cvd454, 33, <cvd585, cvd478> 3, No
+Ana, cvd334, 24, <cvd455, cvd356, cvd424>, 4, No
+Alberto, cvd478, 65, <cvd342, cvd225, cvd872>, 2, No
+Andreia, cvd585, 43, <cvd875, cvd234>, 3, Yes
+Walter, cvd715, 52, <cvd211, cvd478>, 1, No
+Jesse, cvd211, 23, <cvd715>, 4, No
+Sofia, cvd745, 19, <cvd274, cvd189, cvd654>, 5, Yes
+Amelia, cvd454, 33, <cvd585, cvd478>, 3, No

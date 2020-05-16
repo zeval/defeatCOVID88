@@ -4,27 +4,27 @@
 # 55371 Augusto Gouveia
 
 
-class Connection(object):
+class Connection:
     def __init__(self, src, dest):
         """
         Requires: src and dst Nodes
         """
-        self.src = src
-        self.dest = dest
+        self._src = src
+        self._dest = dest
         hoursInADay = 24
-        self.weight = (dest.getFitness() / src.getAge()) * hoursInADay
+        self._weight = (dest.getFitness() / src.getAge()) * hoursInADay
 
     def getSource(self):
-        return self.src
+        return self._src
 
     def getDestination(self):
-        return self.dest
+        return self._dest
 
     def getWeight(self):
-        return self.weight
+        return self._weight
 
     def __str__(self):
-        return self.getSource().getName() + '->(' + str(self.weight) + ')' \
+        return self.getSource().getName() + '->(' + str(self.getWeight()) + ')' \
                + self.getDestination().getName()
 
     # when handed a Connection object, SocialNetwork must add it reciprocally
