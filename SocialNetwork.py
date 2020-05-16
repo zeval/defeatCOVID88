@@ -37,9 +37,11 @@ class SocialNetwork:
         for person in self._users:
             for contact in person.getDirect():
                 if self.contactInNetwork(contact) is not None:
-                    newConnection = Connection(person.getIdNb, self.contactInNetwork(contact))
-                else:
-                    continue
+                    newConnection = Connection(person, self.contactInNetwork(contact))
+                    self.addConnection(newConnection)
+                # TODO: else add people not in network to list of people who suck
+            
+
 
     def contactInNetwork(self, IdNb):
         for person in self._users:
@@ -55,8 +57,8 @@ class SocialNetwork:
         dest = connection.getDestination()
         weight = connection.getWeight()
 
-        if not (src in self._users and dest in self._users):
-            raise ValueError("User not in network")
+        # if not (src in self._users and dest in self._users):
+        #     raise ValueError("User not in network")
 
         self._connections[src].append((dest, weight))
 
