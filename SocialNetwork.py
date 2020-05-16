@@ -8,7 +8,8 @@ from Person import Person
 
 class SocialNetwork:
     def __init__(self, fileName):
-        self._network = []
+        self._users = []
+        self._connections = {}
         inputFile = open(fileName, "r")
 
         fileContent = inputFile.readlines()
@@ -30,21 +31,56 @@ class SocialNetwork:
 
             self.addPerson(Person(name, idNb, age, direct, fitness, immune))
 
-    def __str__(self):
-        output = ""
-        for person in self.items():
-            output += str(person) + "\n"
-        return output
-
     def addPerson(self, person):
-        self._network.append(person)
+        self._users.append(person)
 
-    def items(self):
+    def addConnection(self, connection):
+        src = connection.getSource()
+        dest = connection.getDestination()
+        weight = connection.getWeight()
+
+        if not (src in self._users and dest in self._users):
+            raise ValueError("User not in network")
+
+        self._connections[src].append((dest, weight))
+
+        # Adding reverse edge
+        self._connections[dest].append((src, weight))
+
+    def directContact(self, person):
+        """
+        Returns everyone the person is in direct contact with
+        """
+        return self._connections[person]
+
+    def inNetwork(self, person):
+        """
+        Returns boolean value stating if person is included in the network
+        """
+        return person in self._users
+
+    def itemsUsers(self):
         """
         Supports iteration over the current instance
         """
-        for elem in self._network:
+        for elem in self._users:
             yield elem
+
+    def itemsConnections(self):
+        """
+        Supports iteration over the current instance
+        """
+        for elem in self._connections:
+            yield elem
+
+    def __str__(self):
+        output = ""
+        for person in self._users:
+            output += person + " has contact with: \n" 
+            for contact in self._connections[person]:
+                output += contact + "\n"
+        return output
+
 
     # def readFile(self, fileName):
     #     inputFile = open(fileName, "r")
