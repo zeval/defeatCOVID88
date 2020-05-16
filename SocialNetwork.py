@@ -40,8 +40,6 @@ class SocialNetwork:
                     newConnection = Connection(person, self.contactInNetwork(contact))
                     self.addConnection(newConnection)
                 # TODO: else add people not in network to list of people who suck
-            
-
 
     def contactInNetwork(self, IdNb):
         for person in self._users:
@@ -51,6 +49,7 @@ class SocialNetwork:
 
     def addPerson(self, person):
         self._users.append(person)
+        self._connections[person] = []
 
     def addConnection(self, connection):
         src = connection.getSource()
@@ -97,9 +96,8 @@ class SocialNetwork:
             output += person.getName() + " has contact with: \n"
             if len(self._connections) > 0:
                 for contact in self._connections[person]:
-                    output += contact.getName() + "\n"
+                    output += contact[0].getName() + "\n"
         return output
-
 
     # def readFile(self, fileName):
     #     inputFile = open(fileName, "r")
