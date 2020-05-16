@@ -95,8 +95,8 @@ class SocialNetwork:
         for person in self._users:
             output += person.getName() + " has contact with: \n"
             if len(self._connections) > 0:
-                for contact in self._connections[person]:
-                    output += contact[0].getName() + "\n"
+                for contact, weight in self._connections[person]:
+                    output += contact.getName() + ' (' + str(weight) + ')' + "\n"
         return output
 
     # def readFile(self, fileName):
