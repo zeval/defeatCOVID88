@@ -36,9 +36,14 @@ class SocialNetwork:
 
         for person in self._users:
             for contact in person.getDirect():
-                if self.contactInNetwork(contact) is not None:
+
+                contactObject = self.contactInNetwork(contact)
+                destinations = [dest for dest, weight in self._connections[person]]
+                
+                if (contactObject is not None) and (contactObject not in destinations):
                     newConnection = Connection(person, self.contactInNetwork(contact))
                     self.addConnection(newConnection)
+                    self.reverseConnection(newConnection)
                 # TODO: else add people not in network to list of people who suck
 
     def contactInNetwork(self, IdNb):
@@ -61,8 +66,12 @@ class SocialNetwork:
 
         self._connections[src].append((dest, weight))
 
+    def reverseConnection(self, connection):
         # Adding reverse edge
-        self._connections[dest].append((src, weight))
+
+        revConnection = Connection(connection.getDestination(), connection.getSource())
+
+        self.addConnection(revConnection)
 
     def directContact(self, person):
         """

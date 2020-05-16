@@ -14,7 +14,8 @@ def calculate(networkFile, interactionsFile):
     socialNetwork = SocialNetwork(networkFile)
     subjectList = Subjects(interactionsFile)
     print(socialNetwork)
-    print(subjectList)
+    # print(subjectList)
+
 
 
 try:
