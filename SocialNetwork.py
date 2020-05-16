@@ -35,13 +35,14 @@ class SocialNetwork:
         inputFile.close()
 
         for person in self._users:
-            for contact in person.getDirect():
+            for contactID in person.getDirect():
 
-                contactObject = self.contactInNetwork(contact)
+                contactObject = self.contactInNetwork(contactID)
                 destinations = [dest for dest, weight in self._connections[person]]
-                
+
+                # If contact person not in network & if connection doesn't already exist
                 if (contactObject is not None) and (contactObject not in destinations):
-                    newConnection = Connection(person, self.contactInNetwork(contact))
+                    newConnection = Connection(person, self.contactInNetwork(contactID))
                     self.addConnection(newConnection)
                     self.reverseConnection(newConnection)
                 # TODO: else add people not in network to list of people who suck
