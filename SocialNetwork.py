@@ -4,6 +4,7 @@
 # 55371 Augusto Gouveia
 
 from Person import Person
+from Connection import Connection
 
 
 class SocialNetwork:
@@ -30,6 +31,21 @@ class SocialNetwork:
             # creating Person object and adding it to the social network
 
             self.addPerson(Person(name, idNb, age, direct, fitness, immune))
+
+        inputFile.close()
+
+        for person in self._users:
+            for contact in person.getDirect():
+                if self.contactInNetwork(contact) is not None:
+                    newConnection = Connection(person.getIdNb, self.contactInNetwork(contact))
+                else:
+                    continue
+
+    def contactInNetwork(self, IdNb):
+        for person in self._users:
+            if person.getIdNb() == IdNb:
+                return person
+        return None
 
     def addPerson(self, person):
         self._users.append(person)
