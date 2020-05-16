@@ -76,9 +76,9 @@ class SocialNetwork:
     def __str__(self):
         output = ""
         for person in self._users:
-            output += person + " has contact with: \n" 
+            output += person.getName() + " has contact with: \n" 
             for contact in self._connections[person]:
-                output += contact + "\n"
+                output += contact.getName() + "\n"
         return output
 
 
