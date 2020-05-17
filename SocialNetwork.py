@@ -184,7 +184,7 @@ class SocialNetwork:
         strFinalPath = ""
         for person in finalPath:
             strFinalPath += str(person) + " --> "
-        return strFinalPath + ", " + str(round(self.totalWeight(finalPath) * 24))
+        return strFinalPath + ", " + str(self.totalWeight(finalPath) * 24)
 
     def __str__(self):
         output = ""
