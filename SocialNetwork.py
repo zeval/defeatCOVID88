@@ -6,6 +6,8 @@
 from Person import Person
 from Connection import Connection
 
+hoursInADay = 24
+
 
 class SocialNetwork:
     def __init__(self, fileName):
@@ -115,8 +117,8 @@ class SocialNetwork:
 
         return self._connections[person]
 
+    # *****************************
 
-# *****************************
     def printPath(self, path):
         """
         Requires: path a list of nodes
@@ -130,37 +132,36 @@ class SocialNetwork:
 
     def totalWeight(self, path):
         weightCounter = 0
-        for person in range(len(path)-1):
+        for person in range(len(path) - 1):
             for dest, weight in self._connections[path[person]]:
-                if dest == path[person+1]:
+                if dest == path[person + 1]:
                     weightCounter += weight
         return weightCounter
 
     def DFS(self, start, end, path, shortest):
         """
         Requires:
-        graph a Digraph;
         start and end nodes;
         path and shortest lists of nodes
         Ensures:
         a shortest path from start to end in graph
         """
         path = path + [start]
-        # print('Current DFS path:', self.printPath(path), self.totalWeight(path))
+        print('Current DFS path:', self.printPath(path), self.totalWeight(path) * hoursInADay)
         if start == end:
             return path
         for person, weight in self.contactsOf(start):
             if person not in path and not person.getImmune():  # avoid cycles
                 if shortest is None or self.totalWeight(path) < self.totalWeight(shortest):
                     newPath = self.DFS(person, end, path, shortest)
-                    if newPath is not None and (shortest is None or self.totalWeight(newPath)<self.totalWeight(shortest)):
+                    if newPath is not None and (
+                            shortest is None or self.totalWeight(newPath) < self.totalWeight(shortest)):
                         shortest = newPath
         return shortest
 
     def search(self, start, end):
         """
         Requires:
-        graph  a Digraph;
         start and end are nodes
         Ensures:
         shortest path from start to end in graph
@@ -181,10 +182,7 @@ class SocialNetwork:
         finalPath = self.DFS(startPerson, endPerson, [], None)
         if finalPath is None:
             return "No contagion between " + str(startPerson) + " and " + str(endPerson)
-        strFinalPath = ""
-        for person in finalPath:
-            strFinalPath += str(person) + " --> "
-        return strFinalPath + ", " + str(self.totalWeight(finalPath) * 24)
+        return self.printPath(finalPath) + ", " + str(self.totalWeight(finalPath) * hoursInADay)
 
     def __str__(self):
         output = ""
