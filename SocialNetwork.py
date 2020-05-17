@@ -54,8 +54,11 @@ class SocialNetwork:
         return None
 
     def addPerson(self, person):
-        self._users.append(person)
-        self._connections[person] = []
+        if self.contactInNetwork(person.getIdNb()) is None:
+            self._users.append(person)
+            self._connections[person] = []
+        else:
+            raise AssertionError('Duplicate person')
 
     def addConnection(self, connection):
         src = connection.getSource()

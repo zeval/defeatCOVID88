@@ -5,6 +5,7 @@
 
 
 import sys
+from os import path
 # from Person import Person
 from SocialNetwork import SocialNetwork
 from Subjects import Subjects
@@ -14,16 +15,18 @@ def calculate(networkFile, interactionsFile):
     socialNetwork = SocialNetwork(networkFile)
     subjectList = Subjects(interactionsFile)
     print(socialNetwork)
-    # print(subjectList)
-
+    print(subjectList)
 
 
 try:
     networkFileName, interactionsFileName = sys.argv[1:]
-    calculate(networkFileName, interactionsFileName)
+    if path.isfile(networkFileName) and path.isfile(interactionsFileName):
+        calculate(networkFileName, interactionsFileName)
+    else:
+        raise FileNotFoundError
 except FileNotFoundError:
     print("Error: File not found. Double-check your input and try again.")
-except ValueError:
-    print("Error: Two input files required. Double-check if you input two files and try again.")
+except ValueError as error:
+    print("Error: Two input files are needed. Double-check your input and try again.")
 except AssertionError as error:
-    print(error)
+    print("Error: " + str(error))
