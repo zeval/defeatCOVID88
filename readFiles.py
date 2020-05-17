@@ -44,5 +44,6 @@
 #
 # personList = socialNetworkReader("socialNetwork.txt")
 #
-# # for person in personList:
-# #     print(person.getName(), person.getIdNb(), person.getAge(), person.getDirect(), person.getFitness(), person.getImmune())
+# for person in personList:
+#   print(person.getName(), person.getIdNb(), person.getAge(), person.getDirect(),
+#   person.getFitness(), person.getImmune())

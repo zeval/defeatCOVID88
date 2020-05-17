@@ -48,7 +48,7 @@ class SocialNetwork:
                 # TODO: else add people not in network to list of people who suck
 
     def contactInNetwork(self, query):
-        if query[:3]=="cvd":
+        if query[:3] == "cvd":
             for person in self._users:
                 if person.getIdNb() == query:
                     return person
@@ -136,9 +136,6 @@ class SocialNetwork:
                     weightCounter += weight
         return weightCounter
 
-
-
-
     def DFS(self, start, end, path, shortest):
         """
         Requires:
@@ -149,17 +146,16 @@ class SocialNetwork:
         a shortest path from start to end in graph
         """
         path = path + [start]
-        print('Current DFS path:', self.printPath(path), self.totalWeight(path))
+        # print('Current DFS path:', self.printPath(path), self.totalWeight(path))
         if start == end:
             return path
         for person, weight in self.contactsOf(start):
-            if person not in path: # avoid cycles
-                if shortest == None or self.totalWeight(path) < self.totalWeight(shortest):
+            if person not in path and not person.getImmune():  # avoid cycles
+                if shortest is None or self.totalWeight(path) < self.totalWeight(shortest):
                     newPath = self.DFS(person, end, path, shortest)
-                    if newPath != None and (shortest==None or self.totalWeight(newPath)<self.totalWeight(shortest)):
+                    if newPath is not None and (shortest is None or self.totalWeight(newPath)<self.totalWeight(shortest)):
                         shortest = newPath
         return shortest
-    
 
     def search(self, start, end):
         """
@@ -179,17 +175,24 @@ class SocialNetwork:
         if endPerson is None:
             return "{} out of the network".format(end)
 
-        return self.DFS(startPerson, endPerson, [], None)
+        if startPerson.getImmune() or endPerson.getImmune():
+            return "No contagion between " + str(startPerson) + " and " + str(endPerson)
 
-
+        finalPath = self.DFS(startPerson, endPerson, [], None)
+        if finalPath is None:
+            return "No contagion between " + str(startPerson) + " and " + str(endPerson)
+        strFinalPath = ""
+        for person in finalPath:
+            strFinalPath += str(person) + " --> "
+        return strFinalPath + ", " + str(round(self.totalWeight(finalPath) * 24))
 
     def __str__(self):
-            output = ""
-            for person in self._users:
-                output += person.getName() + " has contact with: \n"
-                if len(self._connections) > 0:
-                    for contact, weight in self._connections[person]:
-                        output += contact.getName() + ' (' + str(weight) + ')' + "\n"
-            return output
+        output = ""
+        for person in self._users:
+            output += person.getName() + " has contact with: \n"
+            if len(self._connections) > 0:
+                for contact, weight in self._connections[person]:
+                    output += contact.getName() + ' (' + str(weight) + ')' + "\n"
+        return output
 
 # ************************************

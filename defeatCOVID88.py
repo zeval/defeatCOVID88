@@ -16,14 +16,18 @@ def calculate(networkFile, interactionsFile):
     subjectList = Subjects(interactionsFile)
     print(socialNetwork)
     print(subjectList)
+    for subjectA, subjectB in subjectList.items():
+        print(socialNetwork.search(subjectA, subjectB))
 
 
 try:
     networkFileName, interactionsFileName = sys.argv[1:]
-    if path.isfile(networkFileName) and path.isfile(interactionsFileName):
-        calculate(networkFileName, interactionsFileName)
-    else:
+
+    if not path.isfile(networkFileName) or not path.isfile(interactionsFileName):
         raise FileNotFoundError
+
+    calculate(networkFileName, interactionsFileName)
+
 except FileNotFoundError:
     print("Error: File not found. Double-check your input and try again.")
 except ValueError as error:

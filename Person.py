@@ -16,7 +16,10 @@ class Person:
         self._age = age
         self._direct = copy.deepcopy(direct)
         self._fitness = fitness
-        self._immune = immune
+        if immune == "Yes":
+            self._immune = True
+        else:
+            self._immune = False
 
     def __str__(self):
         return self._name
@@ -42,3 +45,9 @@ class Person:
 
     def getImmune(self):
         return self._immune
+
+    def getInvertedAge(self):
+        inverted = self.getAge()
+        print(len(inverted))
+        inverted = inverted[::-1]
+        return inverted

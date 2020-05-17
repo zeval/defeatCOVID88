@@ -12,7 +12,7 @@ class Connection:
         self._src = src
         self._dest = dest
         hoursInADay = 24
-        self._weight = (int(dest.getFitness()) / int(src.getAge())) * hoursInADay
+        self._weight = (int(dest.getFitness()) / int(src.getAge()))
 
     def getSource(self):
         return self._src
