@@ -47,10 +47,15 @@ class SocialNetwork:
                     self.reverseConnection(newConnection)
                 # TODO: else add people not in network to list of people who suck
 
-    def contactInNetwork(self, IdNb):
-        for person in self._users:
-            if person.getIdNb() == IdNb:
-                return person
+    def contactInNetwork(self, query):
+        if query[:3]=="cvd":
+            for person in self._users:
+                if person.getIdNb() == query:
+                    return person
+        else:
+            for person in self._users:
+                if person.getName() == query:
+                    return person
         return None
 
     def addPerson(self, person):
@@ -103,37 +108,88 @@ class SocialNetwork:
         for elem in self._connections:
             yield elem
 
-    def __str__(self):
-        output = ""
-        for person in self._users:
-            output += person.getName() + " has contact with: \n"
-            if len(self._connections) > 0:
-                for contact, weight in self._connections[person]:
-                    output += contact.getName() + ' (' + str(weight) + ')' + "\n"
-        return output
+    def contactsOf(self, person):
+        """
 
-    # def readFile(self, fileName):
-    #     inputFile = open(fileName, "r")
-    #
-    #     fileContent = inputFile.readlines()
-    #     fileContent = fileContent[1:]
-    #
-    #     personList = []
-    #
-    #     for line in fileContent:
-    #         userDetails = line.strip().split(", ")
-    #
-    #         name = userDetails[0]
-    #         idNb = userDetails[1]
-    #         age = userDetails[2]
-    #         fitness = userDetails[-2]
-    #         immune = userDetails[-1]
-    #
-    #         # organizing direct array
-    #
-    #         direct = userDetails[3:-2]
-    #         direct = [element.strip("<>") for element in direct]
-    #
-    #         # creating Person object
-    #
-    #         self.add(Person(name, idNb, age, direct, fitness, immune))
+        """
+
+        return self._connections[person]
+
+
+# *****************************
+    def printPath(self, path):
+        """
+        Requires: path a list of nodes
+        """
+        result = ''
+        for i in range(len(path)):
+            result = result + str(path[i])
+            if i != len(path) - 1:
+                result = result + '->'
+        return result
+
+    def totalWeight(self, path):
+        weightCounter = 0
+        for person in range(len(path)-1):
+            for dest, weight in self._connections[path[person]]:
+                if dest == path[person+1]:
+                    weightCounter += weight
+        return weightCounter
+
+
+
+
+    def DFS(self, start, end, path, shortest):
+        """
+        Requires:
+        graph a Digraph;
+        start and end nodes;
+        path and shortest lists of nodes
+        Ensures:
+        a shortest path from start to end in graph
+        """
+        path = path + [start]
+        print('Current DFS path:', self.printPath(path), self.totalWeight(path))
+        if start == end:
+            return path
+        for person, weight in self.contactsOf(start):
+            if person not in path: # avoid cycles
+                if shortest == None or self.totalWeight(path) < self.totalWeight(shortest):
+                    newPath = self.DFS(person, end, path, shortest)
+                    if newPath != None and (shortest==None or self.totalWeight(newPath)<self.totalWeight(shortest)):
+                        shortest = newPath
+        return shortest
+    
+
+    def search(self, start, end):
+        """
+        Requires:
+        graph  a Digraph;
+        start and end are nodes
+        Ensures:
+        shortest path from start to end in graph
+        """
+
+        startPerson = self.contactInNetwork(start)
+        endPerson = self.contactInNetwork(end)
+
+        if startPerson is None:
+            return "{} out of the network".format(start)
+
+        if endPerson is None:
+            return "{} out of the network".format(end)
+
+        return self.DFS(startPerson, endPerson, [], None)
+
+
+
+    def __str__(self):
+            output = ""
+            for person in self._users:
+                output += person.getName() + " has contact with: \n"
+                if len(self._connections) > 0:
+                    for contact, weight in self._connections[person]:
+                        output += contact.getName() + ' (' + str(weight) + ')' + "\n"
+            return output
+
+# ************************************
