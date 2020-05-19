@@ -189,6 +189,21 @@ class SocialNetwork:
             return "No contagion between " + str(startPerson) + " and " + str(endPerson)
         return self.printPath(finalPath) + ", " + str(self.totalWeight(finalPath) * hoursInADay)
 
+    # *****************************
+
+    def visualDataExport(self):
+        userNames = []
+        connectionList = []
+        for user in self._users:
+            userNames.append(user.getName())
+
+        for source in self._connections:
+            destinationList = [dest for dest, weight in self._connections[source]]
+            for destination in destinationList:
+
+                connectionList.append((source.getName(), destination.getName()))
+        return userNames, connectionList
+
     def __str__(self):
         output = ""
         for person in self._users:
@@ -198,4 +213,4 @@ class SocialNetwork:
                     output += contact.getName() + ' (' + str(weight) + ')' + "\n"
         return output
 
-# ************************************
+
