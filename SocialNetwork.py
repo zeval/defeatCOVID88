@@ -29,7 +29,7 @@ class SocialNetwork:
             # checking validity of person details provided
 
             assert age > 0, "{}'s age should be above 0.".format(name)
-            assert fitness > 0 and fitness < 6, "{}'s fitness should be between 0 and 5.".format(name)
+            assert 0 < fitness < 6, "{}'s fitness should be between 0 and 5.".format(name)
 
             # organizing direct array
             direct = userDetails[3:-2]
@@ -123,7 +123,7 @@ class SocialNetwork:
         return self._connections[person]
 
     # *****************************
-
+    # noinspection PyMethodMayBeStatic
     def printPath(self, path):
         """
         Requires: path a list of nodes
@@ -152,7 +152,7 @@ class SocialNetwork:
         a shortest path from start to end in graph
         """
         path = path + [start]
-        print('Current DFS path:', self.printPath(path), self.totalWeight(path) * hoursInADay)
+        # print('Current DFS path:', self.printPath(path), self.totalWeight(path) * hoursInADay)
         if start == end:
             return path
         for person, weight in self.contactsOf(start):
