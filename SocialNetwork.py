@@ -187,7 +187,7 @@ class SocialNetwork:
         finalPath = self.DFS(startPerson, endPerson, [], None)
         if finalPath is None:
             return "No contagion between " + str(startPerson) + " and " + str(endPerson)
-        return self.printPath(finalPath) + ", " + str(self.totalWeight(finalPath) * hoursInADay)
+        return self.printPath(finalPath) + ", " + str(round(self.totalWeight(finalPath) * hoursInADay))
 
     # *****************************
 
@@ -212,5 +212,3 @@ class SocialNetwork:
                 for contact, weight in self._connections[person]:
                     output += contact.getName() + ' (' + str(weight) + ')' + "\n"
         return output
-
-
