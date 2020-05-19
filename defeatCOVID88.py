@@ -16,8 +16,8 @@ def calculate(networkFile, interactionsFile):
     subjectList = Subjects(interactionsFile)
     print(socialNetwork)
     print(subjectList)
-    for subjectA, subjectB in subjectList.items():
-        print(socialNetwork.search(subjectA, subjectB))
+    # for subjectA, subjectB in subjectList.items():
+    #     print(socialNetwork.search(subjectA, subjectB))
 
 
 try:
