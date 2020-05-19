@@ -19,7 +19,6 @@ def showGraph(networkFile):
     for person in socialNetwork.itemsUsers():
         G.add_node(person)
         for person2, weight in socialNetwork.contactsOf(person):
-            print(person, person2)
             G.add_edge(person, person2)
 
     pos = nx.spring_layout(G, k=0.5)  # positions for all nodes

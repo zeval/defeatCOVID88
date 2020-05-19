@@ -176,10 +176,10 @@ class SocialNetwork:
         endPerson = self.contactInNetwork(end)
 
         if startPerson is None:
-            return "{} out of the network".format(start)
+            return "{} out of the social network".format(start)
 
         if endPerson is None:
-            return "{} out of the network".format(end)
+            return "{} out of the social network".format(end)
 
         if startPerson.getImmune() or endPerson.getImmune():
             return "No contagion between " + str(startPerson) + " and " + str(endPerson)
@@ -190,19 +190,6 @@ class SocialNetwork:
         return self.printPath(finalPath) + ", " + str(round(self.totalWeight(finalPath) * hoursInADay))
 
     # *****************************
-
-    def visualDataExport(self):
-        userNames = []
-        connectionList = []
-        for user in self._users:
-            userNames.append(user.getName())
-
-        for source in self._connections:
-            destinationList = [dest for dest, weight in self._connections[source]]
-            for destination in destinationList:
-
-                connectionList.append((source.getName(), destination.getName()))
-        return userNames, connectionList
 
     def __str__(self):
         output = ""

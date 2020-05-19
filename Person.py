@@ -45,9 +45,3 @@ class Person:
 
     def getImmune(self):
         return self._immune
-
-    def getInvertedAge(self):
-        inverted = self.getAge()
-        print(len(inverted))
-        inverted = inverted[::-1]
-        return inverted
