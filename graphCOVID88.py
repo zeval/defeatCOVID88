@@ -14,30 +14,30 @@ import matplotlib.pyplot as plt
 def showGraph(networkFile):
 
     G = nx.MultiDiGraph()
+    colors = []
     socialNetwork = SocialNetwork(networkFile)
     for person in socialNetwork.itemsUsers():
         G.add_node(person)
         for person2, weight in socialNetwork.contactsOf(person):
             print(person, person2)
             G.add_edge(person, person2)
-    colors = []
-    for node in G:
-        if node.getImmune():
+
+    pos = nx.spring_layout(G, k=0.5)  # positions for all nodes
+    for person in G:
+        if person.getImmune():
             colors.append('lightblue')
         else:
             colors.append('lightgreen')
-    pos = nx.spring_layout(G)  # positions for all nodes
 
     # nodes
-    nx.draw_networkx_nodes(G, pos, node_size=700, node_color=colors)
+    nx.draw_networkx_nodes(G, pos, node_size=500, node_color=colors)
 
     # edges
-    nx.draw_networkx_edges(G, pos, width=2)
+    nx.draw_networkx_edges(G, pos, width=2, label="yeetyeetyeet")
 
     # labels
     nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
-
-    plt.savefig("weighted_graph.png")  # save as png
+    plt.savefig("graphTestSet.png")  # save as png
     plt.show()  # display
 
 
