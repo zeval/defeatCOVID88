@@ -22,9 +22,14 @@ class SocialNetwork:
             userDetails = line.strip().split(", ")
             name = userDetails[0]
             idNb = userDetails[1]
-            age = userDetails[2]
-            fitness = userDetails[-2]
+            age = int(userDetails[2])
+            fitness = int(userDetails[-2])
             immune = userDetails[-1]
+
+            # checking validity of person details provided
+
+            assert age > 0, "{}'s age should be above 0.".format(name)
+            assert fitness > 0 and fitness < 6, "{}'s fitness should be between 0 and 5.".format(name)
 
             # organizing direct array
             direct = userDetails[3:-2]
