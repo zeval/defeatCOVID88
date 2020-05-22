@@ -9,7 +9,7 @@ Jesse, cvd211, 23, <cvd715>, 4, No
 Sofia, cvd745, 19, <cvd274, cvd189, cvd654>, 5, Yes
 Amelia, cvd454, 33, <cvd585, cvd478, cvd745>, 3, No
 Miguel, cvd354, 42, <cvd454>, 2, No
-John, cvd986, 21, <cvd354>, 5, Yes
+John, cvd986, 21, <cvd354>, 5, No
 Patrick, cvd213, 87, <cvd986>, 2, No
 Michael, cvd571, 20, <cvd213, cvd986>, 5, No
 Foo, cvd537, 19, <cvd571>, 4, No
