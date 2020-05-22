@@ -187,7 +187,13 @@ class SocialNetwork:
         finalPath = self.DFS(startPerson, endPerson, [], None)
         if finalPath is None:
             return "No contagion between " + str(startPerson) + " and " + str(endPerson)
-        return self.printPath(finalPath) + ", " + str(round(self.totalWeight(finalPath) * hoursInADay))
+        return str(round(self.totalWeight(finalPath) * hoursInADay))
+
+    def writeFile(self, subjectList, fileName):
+        outputFile = open(fileName, "w")
+        for subjectA, subjectB in subjectList.items():
+            outputFile.write(self.search(subjectA, subjectB) + "\n")
+        outputFile.close()
 
     # *****************************
 
