@@ -9,6 +9,7 @@ from os import path
 from SocialNetwork import SocialNetwork
 import networkx as nx
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 
 def showGraph(networkFile):
@@ -32,10 +33,17 @@ def showGraph(networkFile):
     nx.draw_networkx_nodes(G, pos, node_size=500, node_color=colors)
 
     # edges
-    nx.draw_networkx_edges(G, pos, width=2, label="yeetyeetyeet")
+    nx.draw_networkx_edges(G, pos, width=2)
 
     # labels
     nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
+
+    # Legend
+    lightBlue = Line2D([0], [0], marker='o', color='w', label='Circle', markerfacecolor='lightblue', markersize=15)
+    lightGreen = Line2D([0], [0], marker='o', color='w', label='Circle', markerfacecolor='lightgreen', markersize=15)
+    
+    plt.legend(handles=(lightBlue, lightGreen), labels=('Immune', 'Not Immune'))
+
     plt.savefig("graphTestSet.png")  # save as png
     plt.show()  # display
 
