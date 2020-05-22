@@ -11,22 +11,23 @@ from SocialNetwork import SocialNetwork
 from Subjects import Subjects
 
 
-def calculate(networkFile, interactionsFile):
+def calculate(networkFile, interactionsFile, outputFileName):
     socialNetwork = SocialNetwork(networkFile)
     subjectList = Subjects(interactionsFile)
     # print(socialNetwork)
     # print(subjectList)
-    for subjectA, subjectB in subjectList.items():
-        print(socialNetwork.search(subjectA, subjectB))
+    # for subjectA, subjectB in subjectList.items():
+    #     print(socialNetwork.search(subjectA, subjectB))
+    socialNetwork.writeFile(subjectList, outputFileName)
 
 
 try:
-    networkFileName, interactionsFileName = sys.argv[1:]
+    networkFileName, interactionsFileName, outputFile = sys.argv[1:]
 
     if not path.isfile(networkFileName) or not path.isfile(interactionsFileName):
         raise FileNotFoundError
 
-    calculate(networkFileName, interactionsFileName)
+    calculate(networkFileName, interactionsFileName, outputFile)
 
 except FileNotFoundError:
     print("Error: File not found. Double-check your input and try again.")
