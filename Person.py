@@ -5,6 +5,7 @@
 
 from copy import deepcopy
 
+
 class Person:
     """
     Creates object representing a person.

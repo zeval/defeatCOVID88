@@ -3,6 +3,7 @@
 # 55373 José Almeida
 # 55371 Augusto Gouveia
 
+
 class Connection:
     def __init__(self, src, dest):
         """
@@ -40,6 +41,30 @@ class Connection:
         """
 
         return self._weight
+
+    def setSource(self, src):
+        """
+        Updates the source in this connection.
+        Requires: src is a Person-type object representing the source person.
+        Ensures: Updated connection source.
+        """
+        self._src = src
+
+    def setDestination(self, dest):
+        """
+        Updates the destination in this connection.
+        Requires: dest is a Person-type object representing the destionation person.
+        Ensures: Updated connection destination.
+        """
+        self._dest = dest
+
+    def setWeight(self, weight):
+        """
+        Updates the connection's weight.
+        Requires: weight is an int representing the connection's weight.
+        Ensures: Updated connection weight.
+        """
+        self._weight = weight
 
     def __str__(self):
         """

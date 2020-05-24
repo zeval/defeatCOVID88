@@ -5,6 +5,7 @@
 
 from Person import Person
 from Connection import Connection
+import copy
 
 hoursInADay = 24
 
@@ -78,6 +79,36 @@ class SocialNetwork:
                 if person.getName() == query:
                     return person
         return None
+
+    def setUsers(self, users):
+        """
+        Setter for the users list.
+        Requires: users is a list containing the various Person-type objects.
+        Ensures: Updated users list.
+        """
+        self._users = users
+
+    def setConnections(self, connections):
+        """
+        Setter for the connections dictionary.
+        Requires: connections is a dictionary, containing Person-type objects as key and words.
+        Ensures: Updated connections dictionary.
+        """
+        self._connections = connections
+
+    def getUsers(self):
+        """
+        Getter for the users list.
+        Ensures: A copy of the social network's users list.
+        """
+        return copy.deepcopy(self._users)
+
+    def getConnections(self):
+        """
+        Getter for the connections dictionary.
+        Ensures: A copy of the social network's connections dictionary.
+        """
+        return copy.deepcopy(self._connections)
 
     def addPerson(self, person):
         """
