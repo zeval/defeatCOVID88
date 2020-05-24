@@ -5,6 +5,7 @@
 
 from Person import Person
 from Connection import Connection
+import copy
 
 hoursInADay = 24
 
@@ -100,14 +101,14 @@ class SocialNetwork:
         Getter for the users list.
         Ensures: A copy of the social network's users list.
         """
-        return self._users.copy()
+        return copy.deepcopy(self._users)
 
     def getConnections(self):
         """
         Getter for the connections dictionary.
         Ensures: A copy of the social network's connections dictionary.
         """
-        return self._connections.copy()
+        return copy.deepcopy(self._connections)
 
     def addPerson(self, person):
         """

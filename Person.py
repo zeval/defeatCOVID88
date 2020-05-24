@@ -5,6 +5,7 @@
 
 import copy
 
+
 class Person:
     """
     Creates object representing a person.
