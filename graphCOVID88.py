@@ -44,13 +44,13 @@ def showGraph(networkFile):
     # labels
     nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
 
-    # Legend
+    # legend
     lightBlue = Line2D([0], [0], marker='o', color='w', label='Circle', markerfacecolor='lightblue', markersize=15)
     lightGreen = Line2D([0], [0], marker='o', color='w', label='Circle', markerfacecolor='lightgreen', markersize=15)
     
     plt.legend(handles=(lightBlue, lightGreen), labels=('Immune', 'Not Immune'))
 
-    plt.savefig("graphTestSet.png")  # save as png
+    plt.savefig("graphTestSet.png")  # save as .png
     plt.show()  # display
 
 

@@ -12,11 +12,10 @@ hoursInADay = 24
 class SocialNetwork:
     def __init__(self, fileName):
         """
-        Unites multiple connections (Connection objects) and persons (Person objects),
+        Integrates multiple connections (Connection objects) and persons (Person objects),
         in order to assemble a network. 
-        Requires: src and dest are Person objects.
-        Ensures: Connection object linking both Person objects and the connection's
-        weight.
+        Requires: fileName is a string representing the social network input file's name.
+        Ensures: graph-like structure including all Person nodes and connections between them.
         """
 
         self._users = []
@@ -40,6 +39,7 @@ class SocialNetwork:
             assert 0 < fitness < 6, "{}'s fitness should be between 0 and 5.".format(name)
 
             # organizing direct array
+
             direct = userDetails[3:-2]
             direct = [element.strip("<>") for element in direct]
 
@@ -56,12 +56,19 @@ class SocialNetwork:
                 destinations = [dest for dest, weight in self._connections[person]]
 
                 # If contact person not in network & if connection doesn't already exist
+
                 if (contactObject is not None) and (contactObject not in destinations):
-                    newConnection = Connection(person, self.contactInNetwork(contactID))
+                    newConnection = Connection(person, contactObject)
                     self.addConnection(newConnection)
                     self.reverseConnection(newConnection)
 
     def contactInNetwork(self, query):
+        """
+        Identifies contact in network.
+        Requires: query is a string representing either a name or an IdNb.
+        Ensures: None if person isn't in network. Person object if a valid 
+        user is found based on query submitted.
+        """
         if query[:3] == "cvd":
             for person in self._users:
                 if person.getIdNb() == query:
@@ -73,6 +80,12 @@ class SocialNetwork:
         return None
 
     def addPerson(self, person):
+        """
+        Adds new person to list of users in network.
+        Requires: person is a Person object not already in network.
+        Ensures: Person object is added to self._users if not there
+        already. Error is raised if person is already in network.
+        """
         if self.contactInNetwork(person.getIdNb()) is None:
             self._users.append(person)
             self._connections[person] = []
@@ -80,31 +93,36 @@ class SocialNetwork:
             raise AssertionError('Duplicate person')
 
     def addConnection(self, connection):
+        """
+        Adds new connection to list of connections.
+        Requires: connection is a Connection object.
+        Ensures: new connection is added to self._connections.
+        """
         src = connection.getSource()
         dest = connection.getDestination()
         weight = connection.getWeight()
 
-        # if not (src in self._users and dest in self._users):
-        #     raise ValueError("User not in network")
-
         self._connections[src].append((dest, weight))
 
     def reverseConnection(self, connection):
-        # Adding reverse edge
+        """
+        Takes new connection and adds the reverse connection.
+        Necessary so that SocialNetwork is a graph-like structure
+        and not a digraph-like structure.
+        Requires: connection is a Connection object.
+        Ensures: reverse connection is added to self._connections.
+        """
+        # Adding reverse connection
 
         revConnection = Connection(connection.getDestination(), connection.getSource())
 
         self.addConnection(revConnection)
 
-    def directContact(self, person):
-        """
-        Returns everyone the person is in direct contact with
-        """
-        return self._connections[person]
-
     def inNetwork(self, person):
         """
-        Returns boolean value stating if person is included in the network
+        Checks if given person in the network.
+        Requires: person is a Person object.
+        Ensures: boolean value stating if person is included in self._users.
         """
         return person in self._users
 
@@ -124,14 +142,20 @@ class SocialNetwork:
 
     def contactsOf(self, person):
         """
-
+        Returns everyone the person is in direct contact with.
+        Requires: person is a Person object.
+        Ensures: list of Person objects in direct contact with
+        the provided Person object.
         """
 
         return self._connections[person]
 
     def printPath(self, path):
         """
-        Requires: path a list of nodes
+        Prints a given path in an easy-to-read way.
+        Requires: path is a list of Person objects.
+        Ensures: easy-to-read string with the name of each Person object,
+        in the correct order.
         """
         result = ''
         for i in range(len(path)):
@@ -141,6 +165,11 @@ class SocialNetwork:
         return result
 
     def totalWeight(self, path):
+        """
+        Works over a given path to return the sum of the weight of it's connections.
+        Requires: path is a list of Person objects.
+        Ensures: int representing the sum of the path's weight.
+        """
         weightCounter = 0
         for person in range(len(path) - 1):
             for dest, weight in self._connections[path[person]]:
@@ -150,14 +179,13 @@ class SocialNetwork:
 
     def DFS(self, start, end, path, shortest):
         """
-        Requires:
-        start and end nodes;
-        path and shortest lists of nodes
-        Ensures:
-        a shortest path from start to end in graph
+        Performs a depth-first-search on the social network.
+        Requires: start and end are Person objects, path and shortest are lists of Person objects.
+        Ensures: the path with the least weight between all of the available paths between start 
+        and end Person objects.
         """
         path = path + [start]
-        # print('Current DFS path:', self.printPath(path), self.totalWeight(path) * hoursInADay)
+    
         if start == end:
             return path
         for person, weight in self.contactsOf(start):
@@ -171,10 +199,9 @@ class SocialNetwork:
 
     def search(self, start, end):
         """
-        Requires:
-        start and end are nodes
-        Ensures:
-        shortest path from start to end in graph
+        Simplified DFS function-call for ease-of-use.
+        Requires: start and end are strings representing people.
+        Ensures: string representing an adapted output of DFS result.
         """
 
         startPerson = self.contactInNetwork(start)
@@ -195,6 +222,14 @@ class SocialNetwork:
         return str(round(self.totalWeight(finalPath) * hoursInADay))
 
     def writeFile(self, subjectList, fileName):
+        """
+        Outputs self.search() results to a file.
+        Requires: subjectList is a Subject collection (object) containing 
+        the various pairs to be tested. fileName is a string representing
+        the desired name of the output file.
+        Ensures: file containing search results for every pair is created 
+        using fileName as it's name.
+        """
         outputFile = open(fileName, "w", encoding="utf-8")
         for subjectA, subjectB in subjectList.items():
             outputFile.write(self.search(subjectA, subjectB) + "\n")

@@ -1,5 +1,5 @@
 #Name,IdNb, Age, Direct, Fitness, Immune:
-Andre, cvd862, 3, <cvd899>, 5, No
+André, cvd862, 3, <cvd899>, 5, No
 Filipa, cvd899, 21, <cvd862>, 5, No
 Paulo, cvd100, 21, <cvd899>, 5, No
 Amanda, cvd832, 18, <cvd100>, 5, No
