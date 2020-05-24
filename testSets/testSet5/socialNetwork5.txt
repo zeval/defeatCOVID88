@@ -1,0 +1,16 @@
+#Name,IdNb, Age, Direct, Fitness, Immune:
+Jon, cvd443, 37, <cvd221, cvd343, cvd245, cvd556, cvd256>, 3, Yes
+Manuel, cvd256, 72, <cvd173, cvd132>, 4, No
+Ana, cvd334, 24, <cvd455, cvd356, cvd424, cvd256>, 4, Yes
+Albert, cvd478, 65, <cvd342, cvd225, cvd872, cvd443>, 2, No
+Andrea, cvd585, 43, <cvd875, cvd234>, 3, Yes
+Bob, cvd715, 52, <cvd211, cvd478, cvd334>, 1, No
+David, cvd211, 23, <cvd715>, 4, No
+Sophia, cvd745, 19, <cvd274, cvd189, cvd654>, 5, Yes
+Constança, cvd454, 33, <cvd585, cvd478, cvd745>, 3, No
+Michael, cvd354, 42, <cvd454, cvd585>, 2, No
+John, cvd986, 21, <cvd354, cvd715>, 5, No
+Patrick, cvd213, 87, <cvd986, cvd585>, 2, No
+Miguel, cvd571, 20, <cvd211, cvd986>, 5, No
+Peter, cvd537, 19, <cvd571, cvd256>, 4, No
+Boris, cvd538, 21, <cvd537, cvd745>, 3, No
