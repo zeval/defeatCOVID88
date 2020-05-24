@@ -22,9 +22,11 @@ def showGraph(networkFile):
 
     G = nx.MultiDiGraph()
     colors = []
+    labels = {}
     socialNetwork = SocialNetwork(networkFile)
     for person in socialNetwork.itemsUsers():
         G.add_node(person)
+        labels[person] = person.getName()
         for person2, weight in socialNetwork.contactsOf(person):
             G.add_edge(person, person2)
 
@@ -42,7 +44,7 @@ def showGraph(networkFile):
     nx.draw_networkx_edges(G, pos, width=2)
 
     # labels
-    nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
+    nx.draw_networkx_labels(G, pos, labels=labels, font_size=10, font_family='sans-serif')
 
     # legend
     lightBlue = Line2D([0], [0], marker='o', color='w', label='Circle', markerfacecolor='lightblue', markersize=15)
