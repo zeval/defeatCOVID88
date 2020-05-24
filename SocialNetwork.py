@@ -79,6 +79,36 @@ class SocialNetwork:
                     return person
         return None
 
+    def setUsers(self, users):
+        """
+        Setter for the users list.
+        Requires: users is a list containing the various Person-type objects.
+        Ensures: Updated users list.
+        """
+        self._users = users
+
+    def setConnections(self, connections):
+        """
+        Setter for the connections dictionary.
+        Requires: connections is a dictionary, containing Person-type objects as key and words.
+        Ensures: Updated connections dictionary.
+        """
+        self._connections = connections
+
+    def getUsers(self):
+        """
+        Getter for the users list.
+        Ensures: A copy of the social network's users list.
+        """
+        return self._users.copy()
+
+    def getConnections(self):
+        """
+        Getter for the connections dictionary.
+        Ensures: A copy of the social network's connections dictionary.
+        """
+        return self._connections.copy()
+
     def addPerson(self, person):
         """
         Adds new person to list of users in network.
