@@ -32,6 +32,6 @@ try:
 except FileNotFoundError:
     print("Error: File not found. Double-check your input and try again.")
 except ValueError as error:
-    print("Error: Two input files are needed. Double-check your input and try again.")
+    print("Error: Two input files are needed. You must also specify the output file's name. Double-check your input and try again.")
 except AssertionError as error:
     print("Error: " + str(error))

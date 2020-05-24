@@ -13,8 +13,12 @@ class Subjects:
 
         for line in fileContent:
             birds = line.strip().split(" ")
-            assert len(birds) == 2, "Error: Badly formed subjects file. " \
+            assert len(birds) == 2, "Badly formed subjects file. " \
                                     "Please double-check your subjects file and try again."
+
+            assert birds[0] != birds[1], "Same person mentioned twice in the same line of subjects file. " \
+                                         "Please double-check your subjects file and try again."
+
             pair = (birds[0], birds[1])
             self.addSubjects(pair)
 

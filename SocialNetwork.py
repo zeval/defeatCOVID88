@@ -27,7 +27,7 @@ class SocialNetwork:
             immune = userDetails[-1]
 
             # checking validity of person details provided
-
+            
             assert age > 0, "{}'s age should be above 0.".format(name)
             assert 0 < fitness < 6, "{}'s fitness should be between 0 and 5.".format(name)
 
