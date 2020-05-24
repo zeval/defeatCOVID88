@@ -3,7 +3,6 @@
 # 55373 José Almeida
 # 55371 Augusto Gouveia
 
-
 import sys
 from os import path
 from SocialNetwork import SocialNetwork
@@ -13,6 +12,13 @@ from matplotlib.lines import Line2D
 
 
 def showGraph(networkFile):
+    """
+    Creates visual representation of given social network.
+    Requires: networkFile is a string representing the network
+    file name. networkx and matplotlib modules are installed. 
+    Ensures: an image with a graph representing all Person nodes,
+    their immunity status and all connections between them.
+    """
 
     G = nx.MultiDiGraph()
     colors = []
@@ -49,6 +55,10 @@ def showGraph(networkFile):
 
 
 try:
+    # Checks if both required modules are installed.
+    import networkx as nx
+    import matplotlib.pyplot as plt
+
     networkFileName = sys.argv[1]
 
     if not path.isfile(networkFileName):
@@ -58,7 +68,7 @@ try:
 
 except FileNotFoundError:
     print("Error: File not found. Double-check your input and try again.")
-except ValueError as error:
-    print("Error: " + str(error))
-except AssertionError as error:
-    print("Error: " + str(error))
+except (ValueError, IndexError) as error:
+    print("Error: You must specify the network file's name. Double-check your input and try again.")
+except ImportError:
+    print("Error: Both networkx and matplotlib packages are required.")
