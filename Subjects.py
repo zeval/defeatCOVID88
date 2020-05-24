@@ -3,6 +3,7 @@
 # 55373 José Almeida
 # 55371 Augusto Gouveia
 
+from copy import deepcopy
 
 class Subjects:
     """
@@ -26,6 +27,26 @@ class Subjects:
 
             pair = (subjects[0], subjects[1])
             self.addSubjects(pair)
+
+    # Getters
+
+    def getPairs(self):
+        """
+        Returns copy of self._pairs.
+        """
+
+        return deepcopy(self._pairs)
+
+    # Setters
+
+    def setPairs(self, newPairs):
+        """
+        Allows for setting a new list of pairs.
+        Requires: newPairs is a list containing tuples with 2 elements.
+        Ensures: self._pairs = newPairs
+        """
+
+        self._pairs = newPairs
 
     def addSubjects(self, subjects):
         """

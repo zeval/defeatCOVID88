@@ -3,7 +3,7 @@
 # 55373 José Almeida
 # 55371 Augusto Gouveia
 
-import copy
+from copy import deepcopy
 
 class Person:
     """
@@ -21,12 +21,66 @@ class Person:
         self._name = name
         self._idnb = idnb
         self._age = age
-        self._direct = copy.deepcopy(direct)
+        self._direct = deepcopy(direct)
         self._fitness = fitness
         if immune == "Yes":
             self._immune = True
         else:
             self._immune = False
+
+    # Setters
+
+    def setName(self, newName):
+        """
+        Allows for setting a new name.
+        Requires: newName is a string representing the desired name.
+        Ensures: self._name = newName.
+        """
+
+        self._name = newName
+
+    def setIdNb(self, newIdNb):
+        """
+        Allows for setting a new ID number.
+        Requires: newIdNb is a string representing the desired ID number.
+        Ensures: self._idnb = newIdNb.
+        """
+        self._idnb = newIdNb
+
+    def setAge(self, newAge):
+        """
+        Allows for setting a new age.
+        Requires: newAge is an int representing the age.
+        Ensures: self._age = newAge.
+        """
+        self._age = newAge
+
+    def setDirect(self, newDirect):
+        """
+        Allows for setting a new direct list.
+        Requires: newDirect is a list representing the person's close contacts.
+        Ensures: self._direct = newDirect.
+        """
+        self._direct = newDirect
+
+    def setFitness(self, newFitness):
+        """
+        Allows for setting a new fitness level.
+        Requires: newFitness is an int representing the fitness leve.
+        Ensures: self._fitness = newFitness.
+        """
+
+        self._fitness = newFitness
+
+    def setImmune(self, newImmune):
+        """
+        Allows for setting a new immunity status.
+        Requires: newImmune is an boolean value representing the immunity status.
+        Ensures: self._immune = newImmune.
+        """
+
+        self._immune = newImmune
+    
 
     # Getters
 
@@ -57,7 +111,7 @@ class Person:
         Ensures: a list with the ID numbers of everyone in direct
         contact with the person.
         """
-        return self._direct
+        return deepcopy(self._direct)
 
     def getFitness(self):
         """
