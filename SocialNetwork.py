@@ -11,6 +11,14 @@ hoursInADay = 24
 
 class SocialNetwork:
     def __init__(self, fileName):
+        """
+        Unites multiple connections (Connection objects) and persons (Person objects),
+        in order to assemble a network. 
+        Requires: src and dest are Person objects.
+        Ensures: Connection object linking both Person objects and the connection's
+        weight.
+        """
+
         self._users = []
         self._connections = {}
         inputFile = open(fileName, "r", encoding="utf-8")
@@ -52,7 +60,6 @@ class SocialNetwork:
                     newConnection = Connection(person, self.contactInNetwork(contactID))
                     self.addConnection(newConnection)
                     self.reverseConnection(newConnection)
-                # TODO: else add people not in network to list of people who suck
 
     def contactInNetwork(self, query):
         if query[:3] == "cvd":
@@ -128,7 +135,7 @@ class SocialNetwork:
         """
         result = ''
         for i in range(len(path)):
-            result = result + str(path[i])
+            result = result + path[i].getName()
             if i != len(path) - 1:
                 result = result + '->'
         return result
@@ -180,11 +187,11 @@ class SocialNetwork:
             return "{} out of the social network".format(end)
 
         if startPerson.getImmune() or endPerson.getImmune():
-            return "No contagion between " + str(startPerson) + " and " + str(endPerson)
+            return "No contagion between " + startPerson.getName() + " and " + endPerson.getName()
 
         finalPath = self.DFS(startPerson, endPerson, [], None)
         if finalPath is None:
-            return "No contagion between " + str(startPerson) + " and " + str(endPerson)
+            return "No contagion between " + startPerson.getName() + " and " + endPerson.getName()
         return str(round(self.totalWeight(finalPath) * hoursInADay))
 
     def writeFile(self, subjectList, fileName):
