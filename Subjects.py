@@ -7,7 +7,7 @@
 class Subjects:
     def __init__(self, fileName):
         self._pairs = []
-        inputFile = open(fileName, "r")
+        inputFile = open(fileName, "r", encoding="utf-8")
 
         fileContent = inputFile.readlines()
 

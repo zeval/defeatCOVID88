@@ -13,7 +13,7 @@ class SocialNetwork:
     def __init__(self, fileName):
         self._users = []
         self._connections = {}
-        inputFile = open(fileName, "r")
+        inputFile = open(fileName, "r", encoding="utf-8")
 
         fileContent = inputFile.readlines()
         fileContent = fileContent[1:]
@@ -122,8 +122,6 @@ class SocialNetwork:
 
         return self._connections[person]
 
-    # *****************************
-    # noinspection PyMethodMayBeStatic
     def printPath(self, path):
         """
         Requires: path a list of nodes
@@ -190,7 +188,7 @@ class SocialNetwork:
         return str(round(self.totalWeight(finalPath) * hoursInADay))
 
     def writeFile(self, subjectList, fileName):
-        outputFile = open(fileName, "w")
+        outputFile = open(fileName, "w", encoding="utf-8")
         for subjectA, subjectB in subjectList.items():
             outputFile.write(self.search(subjectA, subjectB) + "\n")
         outputFile.close()
