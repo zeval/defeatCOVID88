@@ -1,8 +1,0 @@
-#Name,IdNb, Age, Direct, Fitness, Immune:
-Francisco, cvd887, 23, <cvd231, cvd829, cvd854>, 5, No
-Manuel, cvd829, 78, <>, 1, No
-Amadeu, cvd913, 3, <cvd887>, 4, No
-Alberta, cvd843, 46, <cvd493, cvd898 cvd829>, 3, Yes
-Filomena, cvd554, 14, <>, 4, No
-Fernando, cvd675, 2, <cvd554, cvd231>, 5, No
-Marega, cvd231, 29, <cvd843>, 4, Yes

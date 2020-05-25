@@ -1,0 +1,10 @@
+#Name, IdNb, Age, Direct, Fitness, Immune:
+Russel, cvd154, 12, <cvd221, cvd343, cvd245>, 3, No
+Hawkins, cvd271, 37, <cvd221, cvd154, cvd245>, 4, No
+Alexander, cvd343, 22, <cvd245, cvd178, cvd452>, 5, No
+Wallace, cvd245, 87, <cvd832, cvd231, cvd112>, 4, Yes
+Allen, cvd132, 12, <cvd245, cvd112, cvd326>, 5, No
+Lewis, cvd231, 43, <cvd154, cvd271, cvd245>, 3, No
+Gordon, cvd127, 32, <cvd123, cvd245, cvd132>, 5, Yes
+Jackson, cvd888, 12, <cvd245, cvd343, cvd127>, 4, No
+Richard, cvd321, 12, <cvd132, cvd271, cvd245>, 1, No
